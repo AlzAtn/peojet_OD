@@ -1,10 +1,15 @@
-var express = require('express')
-var app = express()
+const express = require('express')
 
+// creation app
+const app = express()
+const https = require('https')
+const server = https.Server(app)
+var request = require('request');
+
+// page d'accueil
 app.get('/', function (req, res) {
-    res.send('Hello World!')
-  })
+	res.setHeader('Content-Type','text/html');
+	res.sendFile(__dirname + '/index.html');
+})
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-  })
+app.listen(8080)
