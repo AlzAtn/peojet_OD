@@ -1,7 +1,9 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
+var url = 'https://services9.arcgis.com/7Sr9Ek9c1QTKmbwr/arcgis/rest/services/mesures_occitanie_72h_poll_princ/FeatureServer/0/query?'
+
+app.get(url, function (req, res) {
     res.send('Hello World!')
   })
 
