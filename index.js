@@ -1,10 +1,16 @@
 var express = require("express");/* npm install express */
-var csv = require('csv-express')/* npm install csv-express*/
+var csv = require('csv-express');/* npm install csv-express*/
 var fetchUrl = require("fetch").fetchUrl
+var convert = require('xml-js');
+var request = require('request');
+var https = require('https');
+var jsonexport = require('jsonexport');
 
-const fs = require('fs')
 
-var app = express();
+var app = express()
+const server = https.Server(app)
+const myRouter = express.Router()
+
 /*
 app.get('/', function (req, res) {
     res.send('Hello World!')
@@ -29,14 +35,25 @@ app.get('/index', function(req,res) {
 
 })
 
-app.get('/city' ,function(req,res){
-    var url="https://api-adresse.data.gouv.fr/search/?q=8+bd+du+port&limit=15";
-    fetchUrl(url , function(error, meta, body){
-		json = JSON.parse(body);
-        res.write(json.features[0].properties.city)
-        res.end()
-    })
-})
+myRouter.route('/geolocalisation')
+// J'implémente les méthodes GET, PUT, UPDATE et DELETE
+// GET
+
+.get(function(req,res){
+  request('https://api-adresse.data.gouv.fr/search/?q='+req.query.adresse, function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode);
+	// Print the response status code if a response was received
+	console.log(typeof(JSON.parse(body)));
+	var options = {compact: true, ignoreComment: true, spaces: 4};
+    res.json({
+		message : "Resultat de votre recherche :",
+		adresse : req.query.adresse,
+		coordonnees : JSON.parse(body,options)
+	});
+	console.log('body:', body); // Print the HTML for the Google homepage.
+	result = convert.js2xml({a:"b",c:"d"});
+	console.log(result);
 
 app.get('/names', function(req,res) {
 	res.format({
@@ -49,17 +66,17 @@ app.get('/names', function(req,res) {
         }
     })
 })
-
-app.get('/page', function(request, response) {
+app.use(myRouter);
+/*app.get('/page', function(request, response) {
   var p1 = request.param("p1"); 
   console.log(p1);
   response.sendFile( __dirname  + '/page');
-});
+});*/
 
-server.post('/post.html', function(request, response) {
+/*server.post('/post', function(request, response) {
   var p1 = request.body.p1; 
   console.log("p1=" + p1);
-});
+});*/
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
