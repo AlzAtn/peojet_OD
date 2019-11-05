@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/natoine/tutonodejsinit#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "csv-express": "^1.2.2",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0"
   }
 }
