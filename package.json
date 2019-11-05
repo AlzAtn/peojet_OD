@@ -1,5 +1,6 @@
 {
   "name": "tutonodejsinit",
+  "name": "c",
   "version": "1.0.0",
   "description": "Tuto",
   "main": "index.js",
@@ -18,10 +19,19 @@
   },
   "homepage": "https://github.com/natoine/tutonodejsinit#readme",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.17.1",
     "fetch": "^1.1.0",
     "http": "0.0.0",
     "request": "^2.88.0"
   },
   "devDependencies": {}
+=======
+    "body-parser": "^1.19.0",
+    "csv-express": "^1.2.2",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "save": "^2.4.0"
+  }
+>>>>>>> origin/anlimou
 }
