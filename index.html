@@ -3,10 +3,32 @@
 	<head>
 		<title>Index</title>
 		<meta charset="utf-8"/>
-		<script src="monscript.js"></script>
+		<script src="index.js"></script>
 	</head>
 	<body>
-		<p> mouhahaha
-		</p>
+		
+			<label>Numéro : <input type="text" name="no_rue" id="n"></label><br>
+			<label> Nom de rue : <input type="text" name="nom_rue" id="m"></label><br>
+			<input type="submit" value="Envoyer" onclick="myFunction()">
+	<script>
+	
+	var url = 'https://api-adresse.data.gouv.fr/search/?q=' ;
+	function myFunction(){
+		no_rue=document.getElementById("n").value;
+		nom_rue=document.getElementById("m").value;
+		let formData = new FormData();
+		formData.append('Numero de rue', no_rue);
+		formData.append('Nom de rue', no_rue);
+		
+		console.log(no_rue);
+		console.log(nom_rue);
+		}
+
+		/*fetch("api/SampleData",
+			{
+				body: formData,
+				method: "post"
+			});*/
+	</script>
 	</body>
 </html>

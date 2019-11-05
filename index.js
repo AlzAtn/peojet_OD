@@ -50,6 +50,17 @@ app.get('/names', function(req,res) {
     })
 })
 
+app.get('/page', function(request, response) {
+  var p1 = request.param("p1"); 
+  console.log(p1);
+  response.sendFile( __dirname  + '/page');
+});
+
+server.post('/post.html', function(request, response) {
+  var p1 = request.body.p1; 
+  console.log("p1=" + p1);
+});
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
   });
