@@ -5,7 +5,11 @@
   "main": "API_adr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< Updated upstream
 	"start": "API_adr.js"
+=======
+	"start": "node API_adr.js"
+>>>>>>> Stashed changes
   },
   "repository": {
     "type": "git",
