@@ -1,13 +1,11 @@
 {
   "name": "projet_od",
-
   "version": "1.0.0",
   "description": "Tuto",
   "main": "API_adr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "node API_adr.js"
-  
+    "start": "node API_adr.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +21,7 @@
     "csv-express": "^1.2.2",
     "express": "^4.17.1",
     "fetch": "^1.1.0",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "materialize": "^1.0.0"
   }
 }
