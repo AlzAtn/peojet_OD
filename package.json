@@ -1,27 +1,28 @@
 {
-  "name": "c",
+  "name": "projet_od",
+
   "version": "1.0.0",
   "description": "Tuto",
   "main": "API_adr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< Updated upstream
-	"start": "API_adr.js"
-=======
-	"start": "node API_adr.js"
->>>>>>> Stashed changes
+  "start": "node API_adr.js"
+  
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/natoine/tutonodejsinit.git"
+    "url": "git+https://github.com/AlzAtn/projet_OD"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/natoine/tutonodejsinit/issues"
+    "url": "https://github.com/AlzAtn/projet_OD/issues"
   },
-  "homepage": "https://github.com/natoine/tutonodejsinit#readme",
+  "homepage": "https://github.com/AlzAtn/projet_OD#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "csv-express": "^1.2.2",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "fs": "0.0.1-security"
   }
 }
