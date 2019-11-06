@@ -7,7 +7,11 @@ const fs = require('fs')
 var app = express();
 
 
-
+// page d'accueil , une 
+app.get('/', function (req, res) {
+	res.setHeader('Content-Type','text/html');
+	res.sendFile(__dirname + '/index.html');
+})
 
 app.get('/names' ,function(req,res){
 
