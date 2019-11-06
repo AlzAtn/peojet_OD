@@ -5,7 +5,7 @@
   "main": "API_adr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node API_adr.js"
+    "start": "node API_adr.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/AlzAtn/projet_OD#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "csv-express": "^1.2.2",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "fs": "0.0.1-security"
   }
 }
