@@ -1,10 +1,11 @@
 {
-  "name": "tutonodejsinit",
+  "name": "projet_od",
   "version": "1.0.0",
   "description": "Tuto",
-  "main": "index.js",
+  "main": "API_adr.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node API_adr.js"
   },
   "repository": {
     "type": "git",
