@@ -2,11 +2,15 @@
 <!doctype html>
 <html lang="fr">
 <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <meta charset="utf-8">
     <title>contentNegociation</title>
     <meta descr="">
    
-    
+
 </head>
 <body>
         <div class="container">
@@ -76,6 +80,7 @@ function fetchehpadcsv(route)
                 })
             })
 }
+
 jsonbtn_lab.onclick = function()
 {
     console.log("clicked on json")
@@ -99,4 +104,5 @@ csvbtn_med.onclick = function()
     console.log("clicked on csv")
     fetchehpadcsv(`/test`)   
 }
+
 </script>
