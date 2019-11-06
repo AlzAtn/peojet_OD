@@ -6,29 +6,88 @@
 		<script src="index.js"></script>
 	</head>
 	<body>
-		
-			<label>Numéro : <input type="text" name="no_rue" id="n"></label><br>
-			<label> Nom de rue : <input type="text" name="nom_rue" id="m"></label><br>
-			<input type="submit" value="Envoyer" onclick="myFunction()">
-	<script>
-	
-	var url = 'https://api-adresse.data.gouv.fr/search/?q=' ;
-	function myFunction(){
-		no_rue=document.getElementById("n").value;
-		nom_rue=document.getElementById("m").value;
-		let formData = new FormData();
-		formData.append('Numero de rue', no_rue);
-		formData.append('Nom de rue', no_rue);
-		
-		console.log(no_rue);
-		console.log(nom_rue);
-		}
+			<form action="/names" method="GET">
+			<label>Inscrivez votre adresse : <input type="text" name="adresse" id="n"></label><br>
+			<input type="submit" value="Envoyer" id="jsondwl">
+			</form>
+			
+			<div id="d">
+			</div>
+<script>
+jsonbtn = document.getElementById("jsonbtn");
+csvbtn = document.getElementById("csvbtn");
+jsondwl = document.getElementById("jsondwl");
 
-		/*fetch("api/SampleData",
-			{
-				body: formData,
-				method: "post"
-			});*/
-	</script>
+function fetchehpadjson(route)
+{
+    fetch(route, 
+                {
+                    method: 'GET',
+                    headers: { 'accept' : 'application/json'}
+                }
+            ).then(function(response){
+                response.json().then(function(data)
+                {
+                    document.getElementById("d").innerHTML = JSON.stringify(data)
+                })
+            })
+}
+function fetchehpadcsv(route)
+{
+    fetch(route, 
+                {
+                    method: 'GET',
+                    headers: { 'accept' : 'application/csv'}
+                }
+            ).then(function(response){
+                response.blob().then(function(datablob)
+                {
+                    datablob.name = 'newfile.csv'
+                    anchor = document.createElement('a')
+                    anchor.download = datablob.name
+                    anchor.href = window.URL.createObjectURL(datablob)
+                    anchor.dataset.downloadurl = ['application/csv', anchor.download, anchor.href].join(':')
+                    anchor.click()
+                })
+            })
+}
+
+function fetchehdwljson(route)
+{
+    fetch(route, 
+                {
+                    method: 'GET',
+                    headers: { 'accept' : 'application/json'}
+                }
+            ).then(function(response){
+                response.blob().then(function(datablob)
+                {
+                    datablob.name = 'newfile.json'
+                    anchor = document.createElement('a')
+                    anchor.download = datablob.name
+                    anchor.href = window.URL.createObjectURL(datablob)
+                    anchor.dataset.downloadurl = ['application/json', anchor.download, anchor.href].join(':')
+                    anchor.click()
+                })
+            })
+}
+
+jsonbtn.onclick = function()
+{
+    console.log("clicked on json")
+    fetchehpadjson(`/names`)
+}
+csvbtn.onclick = function()
+{
+    console.log("clicked on csv")
+    fetchehpadcsv(`/names`)   
+}
+
+jsondwl.onclick = function()
+{
+    console.log("clicked on json")
+    fetchehdwljson(`/names`)
+}
+</script>
 	</body>
 </html>
