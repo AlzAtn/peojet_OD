@@ -40,6 +40,51 @@ const center_med ={
         //res.write(tab.toString()) //afficher la concatenation
         res.end()
     })
+
+})
+
+const medcin = {
+    name:String,
+    tel:String,
+    profession: String,
+    commune : String
+}
+ 
+meds = []
+
+var ville = "Aulnay-sous-Bois"
+var cp = "93600"
+app.get('/test' ,function(req,res){
+    var url = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=annuaire-et-localisation-des-professionnels-de-sante&rows=10000&facet=code_postal&facet=nom_com&refine.code_postal="+cp+"&refine.nom_com="+ville
+    fetchUrl(url , function(error, meta, body){
+        jsonAnswer = JSON.parse(body)
+        console.log(jsonAnswer.nhits)
+        for(var i=0; i<jsonAnswer.nhits;i++){
+            //console.log(i)
+            //console.log(jsonAnswer.records[i].fields.nom)
+            var med = {}
+            med.nom = jsonAnswer.records[i].fields.nom
+            med.tel = jsonAnswer.records[i].fields.telephone
+            med.profession = jsonAnswer.records[i].fields.libelle_profession
+            med.commune = jsonAnswer.records[i].fields.nom_com
+            meds.push(med)
+        }
+
+        
+        res.format({
+            'application/json': function () {
+        res.json(meds);
+         } })
+
+         res.format({
+            'application/csv': function () {
+        res.csv(meds);
+         } })
+
+        //console.log(JSON.stringify(medcin))
+        //res.write(jsonAnswer.toString())
+        res.end()
+    })
 })
 
 // app.get('/names', function(req,res) {
