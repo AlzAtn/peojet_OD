@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/natoine/tutonodejsinit.git"
+    "url": "git+https://github.com/AlzAtn/projet_OD"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/natoine/tutonodejsinit/issues"
+    "url": "https://github.com/AlzAtn/projet_OD/issues"
   },
-  "homepage": "https://github.com/natoine/tutonodejsinit#readme",
+  "homepage": "https://github.com/AlzAtn/projet_OD#readme",
   "dependencies": {
     "express": "^4.17.1"
   }
