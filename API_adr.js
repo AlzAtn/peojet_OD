@@ -1,3 +1,5 @@
+const port = process.env.PORT || 3000
+
 var express = require("express")/* npm install express */
 var csv = require('csv-express')/* npm install csv-express*/
 var fetchUrl = require("fetch").fetchUrl
@@ -10,22 +12,44 @@ app.get('/', function (req, res) {
     res.send('Hello, vous êtes sur le serveur tah les MIASHS ! allez voir /index')
   })
 
-//API
 
-app.get('/user/:name', function(req, res) {
-	var age=''+req.query.age;
-	if(age!=="undefined" && age.trim().length){
-	res.send('Hello '  + req.params.name + ' tu as ' + age +' ans');
-	}else{
-	(res.send('Hello '  + req.params.name));
-	}
+app.get('/names' ,function(req,res){
+
+param = '?dataset=laboratoires_de_biologie_medicale&facet=cp_ville&refine.cp_ville=78190+TRAPPES' // Param API
+
+const center_med ={
+    Adresse_lab:String,
+    Nom_lab:String
+}
+    
+    li_med = []
+
+    var url ='https://data.iledefrance.fr/api/records/1.0/search/'+param.toString() //url API + param pour requete
+    fetchUrl(url , function(error, meta, body){
+
+        re_api = JSON.parse(body)
+        
+            for (var i = 0; i< re_api.nhits ; i++) { // boucle pour recuprer all cabinet
+                var lab = {}
+                lab.Adresse_lab = re_api.records[i].fields.adresse_complete
+                lab.Nom_lab = re_api.records[i].fields.raison_sociale
+
+                li_med.push(lab)
+            }
+                res.format({
+                  'application/json': function () {
+                res.json(li_med)
+                },
+                    'application/csv': function () {
+                res.csv(li_med)
+                }})
+            
+
+        res.end()
+    })
 })
 
-// app.get('/names', function(req,res) {
-// 	res.format({
-//         'application/json': function () {
-//             res.json([{name : 'toto'}, {name : 'baptiste'}, {name : 'gabriel'}]);
-//         },
+
 
 //         'application/csv': function () {
 //             res.csv([{name : 'toto'}, {name : 'baptiste'}, {name : 'gabriel'}]);
@@ -33,18 +57,27 @@ app.get('/user/:name', function(req, res) {
 //     })
 // })
 
-const medcin = {
-    name:String,
-    tel:String,
-    profession: String,
-    commune : String
-}
- 
-meds = []
 
-var ville = "Aulnay-sous-Bois"
-var cp = "93600"
-app.get('/names' ,function(req,res){
+
+
+
+
+app.get('/test' ,function(req,res){
+
+    var ville = "Aulnay-sous-Bois"
+    var cp = "93600"
+
+    const medcin = {
+        name:String,
+        tel:String,
+        profession: String,
+        commune : String
+    }
+     
+    meds = []
+
+
+
     var url = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=annuaire-et-localisation-des-professionnels-de-sante&rows=10000&facet=code_postal&facet=nom_com&refine.code_postal="+cp+"&refine.nom_com="+ville
     fetchUrl(url , function(error, meta, body){
         jsonAnswer = JSON.parse(body)
@@ -59,6 +92,7 @@ app.get('/names' ,function(req,res){
             med.commune = jsonAnswer.records[i].fields.nom_com
             meds.push(med)
         }
+
 
         
         res.format({
@@ -77,6 +111,10 @@ app.get('/names' ,function(req,res){
     })
 })
 
+
+        
+
+
 //static ressources
 
 app.get('/index', function(req,res) {
@@ -89,6 +127,8 @@ app.get('/index', function(req,res) {
 
 })
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
+
+app.listen(port, function () {
+    console.log('Running')
+
   });
