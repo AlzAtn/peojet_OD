@@ -1,14 +1,26 @@
-<!DOCTYPE utf-8>
-<html>
-  <head>
-    <title>Mon API</title>
+<!-- views/index.ejs -->
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>contentNegociation</title>
+    <meta descr="">
+   
+</head>
+<body>
+        <button type="button" id="jsonbtn">JSON</button>
+        <button type="button" id="csvbtn">CSV</button>
+        
+        <h3>debug</h3>
 
-  </head>
-  <body>
-    <h1>Page API</h1>
-	
-	
-    <script>
+    <div id="response">
+        data : <div id=datacontent><%= JSON.stringify(data.json)%></div>
+    </div>
+
+</body>
+</html>
+
+<script>
 jsonbtn = document.getElementById("jsonbtn")
 csvbtn = document.getElementById("csvbtn")
 
@@ -57,5 +69,3 @@ csvbtn.onclick = function()
     fetchehpadcsv(`/names`)   
 }
 </script>
-  </body>
-</html>
