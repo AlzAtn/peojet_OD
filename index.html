@@ -22,9 +22,11 @@
                 </form>
               </div>
 
-        <button type="button" id="jsonbtn">JSON</button>
-        <button type="button" id="csvbtn">CSV</button>
-        
+        <button type="button" id="jsonbtn_lab">JSON_LAB</button>
+    <button type="button" id="csvbtn_lab">CSV_LAB</button>
+
+        <button type="button" id="jsonbtn_med">JSON_MED</button>
+        <button type="button" id="csvbtn_med">CSV_MED</button>
         <h3>debug</h3>
 
     <div id="response">
@@ -35,9 +37,10 @@
 </html>
 
 <script>
-jsonbtn = document.getElementById("jsonbtn")
-csvbtn = document.getElementById("csvbtn")
-
+jsonbtn_lab = document.getElementById("jsonbtn_lab")
+csvbtn_lab = document.getElementById("csvbtn_lab")
+jsonbtn_med = document.getElementById("jsonbtn_med")
+csvbtn_med = document.getElementById("csvbtn_med")
 
 function fetchehpadjson(route)
 {
@@ -72,14 +75,27 @@ function fetchehpadcsv(route)
                 })
             })
 }
-jsonbtn.onclick = function()
+jsonbtn_lab.onclick = function()
 {
     console.log("clicked on json")
     fetchehpadjson(`/names`)
 }
-csvbtn.onclick = function()
+
+jsonbtn_med.onclick = function()
+{
+    console.log("clicked on json")
+    fetchehpadjson(`/test`)
+}
+
+csvbtn_lab.onclick = function()
 {
     console.log("clicked on csv")
     fetchehpadcsv(`/names`)   
+}
+
+csvbtn_med.onclick = function()
+{
+    console.log("clicked on csv")
+    fetchehpadcsv(`/test`)   
 }
 </script>
