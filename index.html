@@ -1,18 +1,41 @@
-<!DOCTYPE utf-8>
-<html>
-  <head>
-    <title>Mon API</title>
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>contentNegociation</title>
+    <meta descr="">
+   
+</head>
+<body>
+        <div class="container">
+                <form action="action_page.php">
+              
+                  <label for="fname">code postal</label>
+                  <input type="text" id="fname" name="firstname" placeholder="Votre code postal..">
+              
+                  <label for="lname">Ville</label>
+                  <input type="text" id="lname" name="lastname" placeholder="Votre ville..">
+              
+                  <input type="submit" value="Submit">
+              
+                </form>
+              </div>
 
-  </head>
-  <body>
-    <h1>Page API</h1>
-	
-	
-    <script>
+        <button type="button" id="jsonbtn">JSON</button>
+        <button type="button" id="csvbtn">CSV</button>
+        
+        <h3>debug</h3>
+
+    <div id="response">
+        data : <div id=datacontent><%= JSON.stringify(data.json)%></div>
+    </div>
+
+</body>
+</html>
+
+<script>
 jsonbtn = document.getElementById("jsonbtn")
 csvbtn = document.getElementById("csvbtn")
-
-
 function fetchehpadjson(route)
 {
     fetch(route, 
@@ -57,5 +80,3 @@ csvbtn.onclick = function()
     fetchehpadcsv(`/names`)   
 }
 </script>
-  </body>
-</html>

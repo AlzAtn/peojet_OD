@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
-=======
 const port     = process.env.PORT || 3000
 
->>>>>>> Stashed changes
 var express = require("express")/* npm install express */
 var csv = require('csv-express')/* npm install csv-express*/
 var fetchUrl = require("fetch").fetchUrl
@@ -10,22 +7,7 @@ const fs = require('fs')
 var app = express();
 
 
-<<<<<<< Updated upstream
-adr = '?q=8+bd+du+port'
-features = []
 
-app.get('/names' ,function(req,res){
-    var url = "https://api-adresse.data.gouv.fr/search/"+adr.toString()
-    fetchUrl(url , function(error, meta, body){
-    	re_api = JSON.parse(body)
-    	
-    	long = re_api.features.length // nombre de ville
-    	for (var i = 0; i<long-1 ; i++) {
-    		features[i] = re_api.features[i].properties.city
-    	} //récuperation de ville ayant l'adr en quetion 
-   
-        res.write(features.toString())
-=======
 
 app.get('/names' ,function(req,res){
 
@@ -57,42 +39,65 @@ const center_med ={
                     'application/csv': function () {
                 res.csv(li_med)
                 }})
-             
-        //res.write(tab.toString()) //afficher la concatenation
->>>>>>> Stashed changes
+            
+
         res.end()
     })
 })
 
-<<<<<<< Updated upstream
-//API
 
 
-//app.get('/names', function(req,res) {
-//	res.format({
-//        'application/json': function () {
-//            res.json([{name : 'toto'}, {name : 'baptiste'}, {name : 'gabriel'}]);
-//        },
 
-//        'application/csv': function () {
-//            res.csv([{name : 'toto'}, {name : 'baptiste'}, {name : 'gabriel'}]);
-//        }
-//    })
-//})
 
-=======
-// app.get('/names', function(req,res) {
-// 	res.format({
-//         'application/json': function () {
-//             res.json([{name : 'toto'}, {name : 'baptiste'}, {name : 'gabriel'}]);
-//         },
 
-//         'application/csv': function () {
-//             res.csv([{name : 'toto'}, {name : 'baptiste'}, {name : 'gabriel'}]);
-//         }
-//     })
-// })
->>>>>>> Stashed changes
+
+app.get('/test' ,function(req,res){
+
+    var ville = "Aulnay-sous-Bois"
+    var cp = "93600"
+
+    const medcin = {
+        name:String,
+        tel:String,
+        profession: String,
+        commune : String
+    }
+     
+    meds = []
+
+
+    var url = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=annuaire-et-localisation-des-professionnels-de-sante&rows=10000&facet=code_postal&facet=nom_com&refine.code_postal="+cp+"&refine.nom_com="+ville
+    fetchUrl(url , function(error, meta, body){
+        jsonAnswer = JSON.parse(body)
+        console.log(jsonAnswer.nhits)
+        for(var i=0; i<jsonAnswer.nhits;i++){
+            //console.log(i)
+            //console.log(jsonAnswer.records[i].fields.nom)
+            var med = {}
+            med.nom = jsonAnswer.records[i].fields.nom
+            med.tel = jsonAnswer.records[i].fields.telephone
+            med.profession = jsonAnswer.records[i].fields.libelle_profession
+            med.commune = jsonAnswer.records[i].fields.nom_com
+            meds.push(med)
+        }
+
+        
+        res.format({
+            'application/json': function () {
+        res.json(meds);
+         } })
+
+         res.format({
+            'application/csv': function () {
+        res.csv(meds);
+         } })
+
+        //console.log(JSON.stringify(medcin))
+        //res.write(jsonAnswer.toString())
+        res.end()
+    })
+})
+
 
 app.get('/index', function(req,res) {
     fs.readFile('index.html', function(err, html) {
@@ -107,10 +112,6 @@ app.get('/index', function(req,res) {
 //static ressources
 
 
-app.listen(3000, function () {
-<<<<<<< Updated upstream
-    console.log('Running ma friend')
-=======
+app.listen(port, function () {
     console.log('Running')
->>>>>>> Stashed changes
   });
