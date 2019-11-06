@@ -114,6 +114,6 @@ app.get('/index', function(req,res) {
 //static ressources
 
 
-app.listen(3000, function () {
+app.listen(port, function () {
     console.log('Running')
   });
