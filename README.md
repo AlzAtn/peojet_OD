@@ -46,3 +46,7 @@ Puis dans votre navigateur : localhost:3000
 
 vous devriez voir afficher "hello world !"
 
+## les difficultés rencontrées
+
+Au début du projet on avait trouvé une API sur les adresses. Cette API permettait d'avoir des informations à partir d'une adresse (cp, long, lati, ...), le soucis est que contenu de cette API était trop complexe et on arrivé pas à l'exporter en csv.
+
