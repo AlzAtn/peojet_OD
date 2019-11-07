@@ -4,27 +4,38 @@
     <meta charset="utf-8">
     <title>contentNegociation</title>
     <meta descr="">
-   
+
 </head>
 <body>
         <div class="container">
-				<form method="GET" action="/test">
-                              
                   <label for="fname">code postal</label>
                   <input type="text" id="fname" name="firstname" placeholder="Votre code postal..">
               
                   <label for="lname">Ville</label>
-                  <input type="text" id="lname" name="lastname" placeholder="Votre ville..">
-              
-                  <input type="submit" value="Submit">
-              
+
+				<form method="GET" action="/">
+
+                  <input type="text" id="fname" name="firstname"  placeholder="Votre ville ...">
+
+                  <label for="lname">Code Postal : </label>
+                  <span id="lname"></span>
+
+				  <br>
+
+                  <input type="submit" value="Submit" onclick="getCode(event)">
+				  <INPUT TYPE="reset" VALUE=" Annuler ">
+				  <br>
+
                 </form>
               </div>
 
-        <button type="button" id="jsonbtn">JSON</button>
-        <button type="button" id="csvbtn">CSV</button>
-        
+
+
+        <button type="button" id="jsonbtn_lab">JSON_LAB</button>
+        <button type="button" id="jsonbtn_med">JSON_MED</button>
+        <button type="button" id="csvbtn_med">CSV_MED</button>
         <h3>debug</h3>
+
 
     <div id="response">
         data : <div id=datacontent><%= JSON.stringify(data.json)%></div>
@@ -33,12 +44,29 @@
 </body>
 </html>
 
+
 <script>
-jsonbtn = document.getElementById("jsonbtn")
-csvbtn = document.getElementById("csvbtn")
+jsonbtn_lab = document.getElementById("jsonbtn_lab")
+csvbtn_lab = document.getElementById("csvbtn_lab")
+jsonbtn_med = document.getElementById("jsonbtn_med")
+csvbtn_med = document.getElementById("csvbtn_med")
+
+function getCode(event){
+	console.log("nous sommes dans getcode");
+	event.preventDefault();
+	var ville = document.getElementById('fname').value;
+	fetch('/codepostale/'+ ville).then(response =>{
+		response.json().then(codepostal => {
+			var target = document.getElementById('lname');
+			for(var i = 0; i < codepostal.length; i++){
+			
+				target.innerText += codepostal;
+			}
+		});
+
 function fetchehpadjson(route)
 {
-    fetch(route, 
+    fetch(route,
                 {
                     method: 'GET',
                     headers: { 'accept' : 'application/json'}
@@ -52,7 +80,7 @@ function fetchehpadjson(route)
 }
 function fetchehpadcsv(route)
 {
-    fetch(route, 
+    fetch(route,
                 {
                     method: 'GET',
                     headers: { 'accept' : 'application/csv'}
@@ -69,14 +97,29 @@ function fetchehpadcsv(route)
                 })
             })
 }
-jsonbtn.onclick = function()
+jsonbtn_lab.onclick = function()
 {
     console.log("clicked on json")
     fetchehpadjson(`/names`)
 }
-csvbtn.onclick = function()
+
+jsonbtn_med.onclick = function()
+{
+    console.log("clicked on json")
+    fetchehpadjson(`/test`)
+}
+
+csvbtn_lab.onclick = function()
 {
     console.log("clicked on csv")
-    fetchehpadcsv(`/names`)   
+    fetchehpadcsv(`/names`)
 }
+
+
+csvbtn_med.onclick = function()
+{
+    console.log("clicked on csv")
+    fetchehpadcsv(`/test`)
+}
+
 </script>
