@@ -9,6 +9,8 @@ const fs = require('fs')
 
 var app = express();
 app.use(cors());
+
+
 app.get('/', function (req, res) {
     res.send('Hello, vous êtes sur le serveur tah les MIASHS ! allez voir /index')
   })
@@ -125,8 +127,37 @@ app.get('/index', function(req,res) {
             res.write(html)
             res.end()
 	})
-
 })
+// CSS
+app.get('/mainStyle.css', function(req,res) {
+	fs.readFile('css/mainStyle.css.html', function(err, html) {
+	if(err){throw err;}
+	res.writeHead(200, {'Content-Type': 'text/html'})
+            res.write(html)
+            res.end()
+	})
+})
+// CSS  2
+app.get('/materialize.min.css', function(req,res) {
+	fs.readFile('css/materialize.min.css', function(err, html) {
+	if(err){throw err;}
+	res.writeHead(200, {'Content-Type': 'text/html'})
+            res.write(html)
+            res.end()
+	})
+})
+
+// CSS js
+app.get('/materialize.min.js', function(req,res) {
+	fs.readFile('js/materialize.min.js', function(err, html) {
+	if(err){throw err;}
+	res.writeHead(200, {'Content-Type': 'text/html'})
+            res.write(html)
+            res.end()
+	})
+})
+
+
 
 
 app.listen(port, function () {
