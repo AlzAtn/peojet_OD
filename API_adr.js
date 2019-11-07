@@ -123,7 +123,7 @@ app.get('/index', function(req,res) {
 app.get('/css/mainStyle.css', function(req,res) {
 	fs.readFile('css/mainStyle.css', function(err, css) {
 	if(err){throw err;}
-	res.writeHead(200, {'Content-Type': 'mainStyle/css'})
+	res.writeHead(200, {'Content-Type': 'text/css'})
             res.write(css)
             res.end()
 	})
@@ -132,7 +132,7 @@ app.get('/css/mainStyle.css', function(req,res) {
 app.get('/css/materialize.min.css', function(req,res) {
 	fs.readFile('css/materialize.min.css', function(err, css) {
 	if(err){throw err;}
-	res.writeHead(200, {'Content-Type': 'materialize.min/css'})
+	res.writeHead(200, {'Content-Type': 'text/css'})
             res.write(css)
             res.end()
 	})
@@ -142,7 +142,7 @@ app.get('/css/materialize.min.css', function(req,res) {
 app.get('/js/materialize.min.js', function(req,res) {
 	fs.readFile('js/materialize.min.js', function(err, js) {
 	if(err){throw err;}
-	res.writeHead(200, {'Content-Type': 'materialize/js'})
+	res.writeHead(200, {'Content-Type': 'text/js'})
             res.write(js)
             res.end()
 	})
