@@ -30,18 +30,20 @@
         <div class="container">
 
             <Center><h5>Trouvez vos médecins et vos laboratoires en Ile-de-France : </h5></Center>
-				<form method="GET" action="/">
+				<form method="POST" action="/test-page">
 
                   <label for="fname"><h6>Ville</h6></label>
-                  <input type="text" id="fname" name="firstname"  placeholder="Votre ville ...">
+                  <input type="text" id="Vname" name="Vname" placeholder="Votre ville ...">
 
                   <label for="lname"><h6>Code Postal :</h6> </label>
+                  <input type="text" id="cp" name="cp"  placeholder="Code postal">
+                  <span id="text"></span>
                   <span id="lname"></span>
 
 				  <br>
                   <br>
-                  <input type="submit" class="btn waves-effect waves-light" value="Submit" onclick="getCode(event)"><i class="material-icons right">send</i>
-				  <INPUT TYPE="reset" class="btn waves-effect waves-light" VALUE=" Annuler "><i class="material-icons right">clear</i>
+                  <input type="submit" class="btn waves-effect waves-light" value="Submit" onclick="getCode()">
+				  <INPUT TYPE="reset" class="btn waves-effect waves-light" VALUE=" Annuler ">
 			
 				  <br>
                   <br>
@@ -60,7 +62,7 @@
 
 
     <div id="response">
-        data : <div id=datacontent><%= JSON.stringify(data.json)%></div>
+         <div id=datacontent></div>
     </div>
     <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
@@ -73,19 +75,22 @@ csvbtn_lab = document.getElementById("csvbtn_lab")
 jsonbtn_med = document.getElementById("jsonbtn_med")
 csvbtn_med = document.getElementById("csvbtn_med")
 
-function getCode(event){
+function getCode(){
 	console.log("nous sommes dans getcode");
-	event.preventDefault();
-	var ville = document.getElementById('fname').value;
-	fetch('/codepostale/'+ ville).then(response =>{
+	//event.preventDefault();
+    var ville = document.getElementById('Vname').value;
+    
+	fetch('/codepostale').then(response =>{
 		response.json().then(codepostal => {
-			var target = document.getElementById('lname');
+            var target = document.getElementById('lname');
+            var text = document.getElementById('text');
+            target.innerText = codepostal;
+            text.innerText = "Requetes terminées vous pouvez télechargé les fichiers"
 			
-			
-			target.innerText = codepostal;
-			
-		});
-	});	
+        });
+        
+    });	
+
 }
 
 function fetchehpadjson(route)
