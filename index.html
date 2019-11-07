@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
+<<<<<<< Updated upstream
     <link type="text/css" rel="stylesheet" href="css/mainStyle.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,7 +13,32 @@
     <meta descr="">
    
 
+=======
+
+    <!-- Importing some style -->
+    <link type="text/css" rel="stylesheet" href="css/mainStyle.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Importing scripts so that it works well-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <title>contentNegociation</title>
+    <meta descr="">
+
+    <center><h4>Trouvez vos medecin et vos laboratoire d'analyses en île-de-France :</h4></center>
+    
+>>>>>>> Stashed changes
 </head>
+
 <body>
         <div class="container">
                 <form action="action_page.php">
@@ -23,22 +49,35 @@
                   <label for="lname">Ville</label>
                   <input type="text" id="lname" name="lastname" placeholder="Votre ville..">
               
-                  <input type="submit" value="Submit">
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Envoyer
+                        <i class="material-icons right">send</i>
+                  </button>
+                            
               
                 </form>
               </div>
+        <CENTER>
+                
+        <button type="button" id="jsonbtn_lab" class="waves-effect waves-light btn"><i class="material-icons left">cloud_download</i>JSON_LAB</button>
+        <button type="button" id="csvbtn_lab" class="waves-effect waves-light btn"><i class="material-icons left">cloud_download</i>CSV_LAB</button>
+        <button type="button" id="jsonbtn_med" class="waves-effect waves-light btn"><i class="material-icons right">cloud_download</i>JSON_MED</button>
+        <button type="button" id="csvbtn_med" class="waves-effect waves-light btn"><i class="material-icons right">cloud_download</i>CSV_MED</button>
+        </CENTER>
 
+<<<<<<< Updated upstream
         <button type="button" id="jsonbtn_lab"class="waves-effect waves-light btn">JSON_LAB</button>
         <button type="button" id="csvbtn_lab"class="waves-effect waves-light btn">CSV_LAB</button>
 
         <button type="button" id="jsonbtn_med"class="waves-effect waves-light btn">JSON_MED</button>
         <button type="button" id="csvbtn_med"class="waves-effect waves-light btn">CSV_MED</button>
+=======
+>>>>>>> Stashed changes
         <h3>debug</h3>
 
     <div id="response">
         data : <div id=datacontent><%= JSON.stringify(data.json)%></div>
     </div>
-
+    <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>
 
