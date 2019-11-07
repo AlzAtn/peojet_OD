@@ -1,4 +1,4 @@
-<!-- views/index.ejs -->
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -23,26 +23,30 @@
     <title>Medic & Lab Ile-de-France</title>
     <meta descr="">
 
-    <center><h4>Trouvez vos medecin et vos laboratoire d'analyses en île-de-France :</h4></center>
 
 
 </head>
-
 <body>
         <div class="container">
-                <form action="action_page.php">
-              
-                  <label for="fname">code postal</label>
-                  <input type="text" id="fname" name="firstname" placeholder="Votre code postal..">
-              
-                  <label for="lname">Ville</label>
-                  <input type="text" id="lname" name="lastname" placeholder="Votre ville..">
-              
-                  <button class="btn waves-effect waves-light" type="submit" name="action">Envoyer
+
+
+				<form method="GET" action="/">
+
+                  <label for="fname">Ville</label>
+                  <input type="text" id="fname" name="firstname"  placeholder="Votre ville ...">
+
+                  <label for="lname">Code Postal : </label>
+                  <span id="lname"></span>
+
+				  <br>
+
+                  <input type="submit" value="Submit" onclick="getCode(event)">
+				  <INPUT TYPE="reset" VALUE=" Annuler ">
+				  <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Envoyer
                         <i class="material-icons right">send</i>
-                  </button>
-                            
-              
+                  </button> -->
+				  <br>
+
                 </form>
               </div>
         <CENTER>
@@ -56,6 +60,7 @@
 
         <h3>debug</h3>
 
+
     <div id="response">
         data : <div id=datacontent><%= JSON.stringify(data.json)%></div>
     </div>
@@ -63,15 +68,31 @@
 </body>
 </html>
 
+
 <script>
 jsonbtn_lab = document.getElementById("jsonbtn_lab")
 csvbtn_lab = document.getElementById("csvbtn_lab")
 jsonbtn_med = document.getElementById("jsonbtn_med")
 csvbtn_med = document.getElementById("csvbtn_med")
 
+function getCode(event){
+	console.log("nous sommes dans getcode");
+	event.preventDefault();
+	var ville = document.getElementById('fname').value;
+	fetch('/codepostale/'+ ville).then(response =>{
+		response.json().then(codepostal => {
+			var target = document.getElementById('lname');
+			
+			
+			target.innerText = codepostal;
+			
+		});
+	});	
+}
+
 function fetchehpadjson(route)
 {
-    fetch(route, 
+    fetch(route,
                 {
                     method: 'GET',
                     headers: { 'accept' : 'application/json'}
@@ -87,7 +108,7 @@ function fetchehpadjson(route)
 
 function fetchehpadcsv(route)
 {
-    fetch(route, 
+    fetch(route,
                 {
                     method: 'GET',
                     headers: { 'accept' : 'application/csv'}
@@ -121,13 +142,15 @@ jsonbtn_med.onclick = function()
 csvbtn_lab.onclick = function()
 {
     console.log("clicked on csv")
-    fetchehpadcsv(`/names`)   
+    fetchehpadcsv(`/names`)
 }
+
 
 csvbtn_med.onclick = function()
 {
     console.log("clicked on csv")
-    fetchehpadcsv(`/test`)   
+    fetchehpadcsv(`/test`)
 }
+
 
 </script>

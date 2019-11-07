@@ -1,4 +1,4 @@
-const port = process.env.PORT || 3000
+const port     = process.env.PORT || 3000
 
 var express = require("express")/* npm install express */
 var csv = require('csv-express')/* npm install csv-express*/
@@ -11,9 +11,11 @@ var app = express();
 app.use(cors());
 
 
+// page d'accueil , une
 app.get('/', function (req, res) {
-    res.send('Hello, vous êtes sur le serveur tah les MIASHS ! allez voir /index')
-  })
+        res.setHeader('Content-Type','text/html');
+        res.sendFile(__dirname + '/index.html');
+})
 
 
 app.get('/names' ,function(req,res){
@@ -24,14 +26,14 @@ const center_med ={
     Adresse_lab:String,
     Nom_lab:String
 }
-    
+
     li_med = []
 
     var url ='https://data.iledefrance.fr/api/records/1.0/search/'+param.toString() //url API + param pour requete
     fetchUrl(url , function(error, meta, body){
 
         re_api = JSON.parse(body)
-        
+
             for (var i = 0; i< re_api.nhits ; i++) { // boucle pour recuprer all cabinet
                 var lab = {}
                 lab.Adresse_lab = re_api.records[i].fields.adresse_complete
@@ -46,28 +48,28 @@ const center_med ={
                     'application/csv': function () {
                 res.csv(li_med)
                 }})
-            
+
 
         res.end()
     })
 })
 
 
-
-
 app.get('/test' ,function(req,res){
 
-    var ville = "Aulnay-sous-Bois"
-    var cp = "93600"
+
 
     const medcin = {
         name:String,
         tel:String,
         profession: String,
         commune : String
+		
     }
-     
+
     meds = []
+
+
 
 
 
@@ -87,7 +89,6 @@ app.get('/test' ,function(req,res){
         }
 
 
-        
         res.format({
             'application/json': function () {
         res.json(meds);
@@ -105,17 +106,13 @@ app.get('/test' ,function(req,res){
 })
 
 
-        
-
-
-//static ressources
-
 app.get('/index', function(req,res) {
-	fs.readFile('index.html', function(err, html) {
-	if(err){throw err;}
-	res.writeHead(200, {'Content-Type': 'text/html'})
+        fs.readFile('index.html', function(err, html) {
+        if(err){throw err;}
+        res.writeHead(200, {'Content-Type': 'text/html'})
             res.write(html)
             res.end()
+
 	})
 })
 
@@ -138,6 +135,7 @@ app.get('/css/materialize.min.css', function(req,res) {
 	})
 })
 
+
 // CSS js
 app.get('/js/materialize.min.js', function(req,res) {
 	fs.readFile('js/materialize.min.js', function(err, js) {
@@ -148,9 +146,22 @@ app.get('/js/materialize.min.js', function(req,res) {
 	})
 })
 
+app.get('/codepostale/:ville', function(req,res){
+	var ville = req.params.ville;
+	console.log("hello");
+
+	var url = "https://data.iledefrance.fr/api/records/1.0/search/?dataset=annuaire-et-localisation-des-professionnels-de-sante&rows=10000&facet=code_postal&facet=nom_com&refine.nom_com="+ville;
+
+	console.log(url);
+	fetchUrl(url, function(error, meta, body){
+		codepostale =  JSON.parse(body);
+		console.log(codepostale.records);
+		res.json(codepostale.records[0].fields.code_postal);
+	});
+});
+
 
 
 app.listen(port, function () {
     console.log('Running')
-
   });
