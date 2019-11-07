@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -8,13 +9,10 @@
 </head>
 <body>
         <div class="container">
-                  <label for="fname">code postal</label>
-                  <input type="text" id="fname" name="firstname" placeholder="Votre code postal..">
-              
-                  <label for="lname">Ville</label>
 
 				<form method="GET" action="/">
 
+                  <label for="fname">Ville</label>
                   <input type="text" id="fname" name="firstname"  placeholder="Votre ville ...">
 
                   <label for="lname">Code Postal : </label>
@@ -32,6 +30,8 @@
 
 
         <button type="button" id="jsonbtn_lab">JSON_LAB</button>
+    <button type="button" id="csvbtn_lab">CSV_LAB</button>
+
         <button type="button" id="jsonbtn_med">JSON_MED</button>
         <button type="button" id="csvbtn_med">CSV_MED</button>
         <h3>debug</h3>
@@ -58,11 +58,13 @@ function getCode(event){
 	fetch('/codepostale/'+ ville).then(response =>{
 		response.json().then(codepostal => {
 			var target = document.getElementById('lname');
-			for(var i = 0; i < codepostal.length; i++){
 			
-				target.innerText += codepostal;
-			}
+			
+			target.innerText = codepostal;
+			
 		});
+	});	
+}
 
 function fetchehpadjson(route)
 {

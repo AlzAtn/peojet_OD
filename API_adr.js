@@ -3,6 +3,7 @@ const port     = process.env.PORT || 3000
 var express = require("express")/* npm install express */
 var csv = require('csv-express')/* npm install csv-express*/
 var fetchUrl = require("fetch").fetchUrl
+
 const fs = require('fs')
 
 var app = express();
@@ -10,6 +11,7 @@ var app = express();
 // page d'accueil , une
 app.get('/', function (req, res) {
         res.setHeader('Content-Type','text/html');
+        res.sendFile(__dirname + '/index.html');
 })
 
 
@@ -21,7 +23,6 @@ const center_med ={
     Adresse_lab:String,
     Nom_lab:String
 }
-    
 
     li_med = []
 
@@ -123,8 +124,7 @@ app.get('/codepostale/:ville', function(req,res){
 	fetchUrl(url, function(error, meta, body){
 		codepostale =  JSON.parse(body);
 		console.log(codepostale.records);
-		res.json(codepostale.records.map(function(r){
-		return r.fields.code_postal;}));
+		res.json(codepostale.records[0].fields.code_postal);
 	});
 });
 
