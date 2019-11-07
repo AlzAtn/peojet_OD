@@ -54,16 +54,6 @@ const center_med ={
 
 
 
-//         'application/csv': function () {
-//             res.csv([{name : 'toto'}, {name : 'baptiste'}, {name : 'gabriel'}]);
-//         }
-//     })
-// })
-
-
-
-
-
 
 app.get('/test' ,function(req,res){
 
@@ -130,10 +120,10 @@ app.get('/index', function(req,res) {
 })
 // CSS
 app.get('/mainStyle.css', function(req,res) {
-	fs.readFile('css/mainStyle.css.html', function(err, html) {
+	fs.readFile('css/mainStyle.css', function(err, html) {
 	if(err){throw err;}
-	res.writeHead(200, {'Content-Type': 'text/html'})
-            res.write(html)
+	res.writeHead(200, {'Content-Type': 'mainStyle/css'})
+            res.write(css)
             res.end()
 	})
 })
@@ -141,8 +131,8 @@ app.get('/mainStyle.css', function(req,res) {
 app.get('/materialize.min.css', function(req,res) {
 	fs.readFile('css/materialize.min.css', function(err, html) {
 	if(err){throw err;}
-	res.writeHead(200, {'Content-Type': 'text/html'})
-            res.write(html)
+	res.writeHead(200, {'Content-Type': 'materialize.min/css'})
+            res.write(css)
             res.end()
 	})
 })
@@ -151,8 +141,8 @@ app.get('/materialize.min.css', function(req,res) {
 app.get('/materialize.min.js', function(req,res) {
 	fs.readFile('js/materialize.min.js', function(err, html) {
 	if(err){throw err;}
-	res.writeHead(200, {'Content-Type': 'text/html'})
-            res.write(html)
+	res.writeHead(200, {'Content-Type': 'materialize/js'})
+            res.write(js)
             res.end()
 	})
 })
