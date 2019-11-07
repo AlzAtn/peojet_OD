@@ -23,10 +23,10 @@ app.use(cors());
 
 
 // page d'accueil , une
-// app.get('/', function (req, res) {
-//         res.setHeader('Content-Type','text/html');
-//         res.sendFile(__dirname + '/index.html');
-// })
+app.get('/', function (req, res) {
+        res.setHeader('Content-Type','text/html');
+        res.sendFile(__dirname + '/index.html');
+})
 
 app.get('/index', function(req,res) {
     fs.readFile('index.html', function(err, html) {
@@ -86,6 +86,7 @@ app.get('/names' ,function(req,res){
     
     
             res.end()
+           
         })
     })
 
@@ -128,6 +129,8 @@ app.get('/test' ,function(req,res){
         //console.log(JSON.stringify(medcin))
         //res.write(meds)
         res.end()
+
+       
       })
 })
 
@@ -174,7 +177,10 @@ app.get('/codepostale', function(req,res){
 		//console.log(codepostale.records);
         res.json(codepostale.records[0].fields.code_postal);
         
-	});
+    });
+
+    
+    
 });
 
 

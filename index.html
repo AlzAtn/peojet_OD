@@ -30,7 +30,7 @@
         <div class="container">
 
             <Center><h5>Trouvez vos médecins et vos laboratoires en Ile-de-France : </h5></Center>
-				<form method="POST" action="/test-page">
+				<form name="forme" method="POST" action="/test-page" onsubmit="return validateForm()">
 
                   <label for="fname"><h6>Ville</h6></label>
                   <input type="text" id="Vname" name="Vname" placeholder="Votre ville ...">
@@ -70,6 +70,21 @@
 
 
 <script>
+
+
+function validateForm() {
+  var x = document.forms["forme"]["Vname"].value;
+  if (x == "") {
+    alert("Veuillez renseigner votre ville SVP");
+    return false;
+  }
+  var y = document.forms["forme"]["cp"].value;
+  if (y == "") {
+    alert("Veuillez renseigner votre Code Postale SVP");
+    return false;
+  }
+}
+
 jsonbtn_lab = document.getElementById("jsonbtn_lab")
 csvbtn_lab = document.getElementById("csvbtn_lab")
 jsonbtn_med = document.getElementById("jsonbtn_med")
@@ -85,7 +100,7 @@ function getCode(){
             var target = document.getElementById('lname');
             var text = document.getElementById('text');
             target.innerText = codepostal;
-            text.innerText = "Requetes terminées vous pouvez télechargé les fichiers"
+            text.innerText = "Requêtes terminées vous pouvez télecharger les fichiers"
 			
         });
         
