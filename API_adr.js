@@ -3,7 +3,8 @@ const port = process.env.PORT || 3000
 var express = require("express")/* npm install express */
 var csv = require('csv-express')/* npm install csv-express*/
 var fetchUrl = require("fetch").fetchUrl
-
+var cors = require('cors');
+app.use(cors());
 const fs = require('fs')
 
 var app = express();
