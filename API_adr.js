@@ -4,11 +4,11 @@ var express = require("express")/* npm install express */
 var csv = require('csv-express')/* npm install csv-express*/
 var fetchUrl = require("fetch").fetchUrl
 var cors = require('cors');
-app.use(cors());
+
 const fs = require('fs')
 
 var app = express();
-
+app.use(cors());
 app.get('/', function (req, res) {
     res.send('Hello, vous êtes sur le serveur tah les MIASHS ! allez voir /index')
   })
