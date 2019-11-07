@@ -18,11 +18,12 @@
   },
   "homepage": "https://github.com/AlzAtn/projet_OD#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "csv-express": "^1.2.2",
     "express": "^4.17.1",
     "fetch": "^1.1.0",
     "fs": "0.0.1-security",
     "install": "^0.13.0",
-    "npm": "^6.13.0"
+    "materialize": "^1.0.0"
   }
 }

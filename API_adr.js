@@ -3,10 +3,13 @@ const port     = process.env.PORT || 3000
 var express = require("express")/* npm install express */
 var csv = require('csv-express')/* npm install csv-express*/
 var fetchUrl = require("fetch").fetchUrl
+var cors = require('cors');
 
 const fs = require('fs')
 
 var app = express();
+app.use(cors());
+
 
 // page d'accueil , une
 app.get('/', function (req, res) {
@@ -50,7 +53,6 @@ const center_med ={
         res.end()
     })
 })
-
 
 
 app.get('/test' ,function(req,res){
@@ -110,8 +112,38 @@ app.get('/index', function(req,res) {
         res.writeHead(200, {'Content-Type': 'text/html'})
             res.write(html)
             res.end()
-        })
 
+	})
+})
+
+// CSS
+app.get('/css/mainStyle.css', function(req,res) {
+	fs.readFile('css/mainStyle.css', function(err, css) {
+	if(err){throw err;}
+	res.writeHead(200, {'Content-Type': 'mainStyle/css'})
+            res.write(css)
+            res.end()
+	})
+})
+// CSS  2
+app.get('/css/materialize.min.css', function(req,res) {
+	fs.readFile('css/materialize.min.css', function(err, css) {
+	if(err){throw err;}
+	res.writeHead(200, {'Content-Type': 'materialize.min/css'})
+            res.write(css)
+            res.end()
+	})
+})
+
+
+// CSS js
+app.get('/js/materialize.min.js', function(req,res) {
+	fs.readFile('js/materialize.min.js', function(err, js) {
+	if(err){throw err;}
+	res.writeHead(200, {'Content-Type': 'materialize/js'})
+            res.write(js)
+            res.end()
+	})
 })
 
 app.get('/codepostale/:ville', function(req,res){
@@ -127,6 +159,7 @@ app.get('/codepostale/:ville', function(req,res){
 		res.json(codepostale.records[0].fields.code_postal);
 	});
 });
+
 
 
 app.listen(port, function () {
