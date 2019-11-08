@@ -108,8 +108,6 @@ app.get('/test' ,function(req,res){
     fetchUrl(url , function(error, meta, body){
         
         jsonAnswer = JSON.parse(body)
-
-       
        
         for(var i=0; i<jsonAnswer.nhits;i++){
             var med = {}
@@ -182,8 +180,6 @@ app.get('/codepostale', function(req,res){
         
     });
 
-    
-    
 });
 
 

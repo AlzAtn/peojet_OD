@@ -42,7 +42,7 @@
 
 				  <br>
                   <br>
-                  <input type="submit" class="btn waves-effect waves-light" value="Submit" onclick="getCode(event)">
+                  <input type="submit" class="btn waves-effect waves-light" value="Submit" onclick="getCode()">
 				  <INPUT TYPE="reset" class="btn waves-effect waves-light" VALUE=" Annuler ">
 			
 				  <br>
@@ -90,9 +90,9 @@ csvbtn_lab = document.getElementById("csvbtn_lab")
 jsonbtn_med = document.getElementById("jsonbtn_med")
 csvbtn_med = document.getElementById("csvbtn_med")
 
-function getCode(event){
+function getCode(){
 	console.log("nous sommes dans getcode");
-	event.preventDefault();
+	//event.preventDefault();
     var ville = document.getElementById('Vname').value;
     console.log(ville)
 	fetch('/codepostale').then(response =>{
@@ -101,7 +101,7 @@ function getCode(event){
             var text = document.getElementById('text');
            
             text.innerText = "Le nombre de medcins dans la ville est de "+codepostal
-            target.innerText = "Vous pouvez à présent télécharger les resultats en format csv"
+            target.innerText = "Vous pouvez à présent télécharger les résultats en format csv"
         });
         
     });	
