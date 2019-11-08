@@ -22,7 +22,14 @@ URL Heroku : https://projetodmiashs.herokuapp.com/
 # Nos routes
 
 
-précisez les routes que vous avez développé, comment elles marchent, à quoi elle servent
+route : '/names' utiliser pour recuperer les adresses et les noms des laboratoires
+--- exemple : https://projetodmiashs.herokuapp.com/names
+
+route : '/test' utiliser pour recuperer les noms, les spécialités de medcins ainsi que les numeros de téléphones
+--- exemple : https://projetodmiashs.herokuapp.com/test
+
+route : '/codepostale' recupère le nombre de medcins dans la ville selectionnée
+--- exemple : https://projetodmiashs.herokuapp.com/codepostale
 
 
 
