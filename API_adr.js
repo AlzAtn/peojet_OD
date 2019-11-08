@@ -51,6 +51,8 @@ app.post('/test-page', function(req, res) {
         console.log("il y a un probleme frero")
     }
 
+    
+
 });
 
 app.get('/names' ,function(req,res){
@@ -175,7 +177,8 @@ app.get('/codepostale', function(req,res){
 	fetchUrl(url, function(error, meta, body){
 		codepostale =  JSON.parse(body);
 		//console.log(codepostale.records);
-        res.json(codepostale.records[0].fields.code_postal);
+        res.json(codepostale.nhits);
+        console.log(codepostale.nhits)
         
     });
 
