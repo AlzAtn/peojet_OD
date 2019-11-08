@@ -1,7 +1,3 @@
-Source  API des medcins en Ile de France :  https://data.montpellier3m.fr/dataset/donnees-du-portail-open-data-datmo-occitanie
-
-
-API des etablissements d'analyses médicales: http://data-atmo-occitanie.opendata.arcgis.com/datasets/739fa8650448450293d086cc0cb59f37_0/geoservice
-
+Source  API des medcins en Ile de France : https://data.iledefrance.fr/pages/home/
 
 
