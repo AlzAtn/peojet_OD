@@ -1,52 +1,28 @@
-# tutonodejsinit
 
-A la création du projet sur github, pensez à sélectionner un .gitignore Node
+# Nos API
+Nos API proviennent de : https://data.iledefrance.fr/pages/home/ 
 
-Une bonne ressource pour l'installation de Node : https://oncletom.io/node.js/v1/chapter-02/
+Nous avons selectionés 2 portant sur le secteur médical en Ile-de-France.
 
-# installation de node.js
+La premiere permet de récuperer des informations sur les médecins des communes d'IdF. 
+Les paramètres utilisés pour effectuer la rêquete sont le code postal et le nom de la commune, cela permet de récuperer un ensemble d'information sur les médecins (Nom, adresse, téléphone, spécialité...)
 
-node vient avec un gestionnaire de paquets pour les librairies : npm.
+Lien API médecin : https://data.iledefrance.fr/explore/dataset/annuaire-et-localisation-des-professionnels-de-sante/information/
 
-## sous windows
- 
-site de téléchargement : https://nodejs.org/fr/download/
+La seconde API est semblable  la première, fonctionne de la meme facon mais porte sur les laboratoire d'analyse médical. Le paramètre que nous avons utilisé est le code postal.
+Cela nous permet de récuperer le nom du laboratoire et sont adresse, cette dernière est moins fournit que la première.
 
-## sous linux
+Lien API Laboratoire : https://data.iledefrance.fr/explore/dataset/laboratoires_de_biologie_medicale/api/
 
-En ligne de commande : apt-get install nodejs
 
-Ou bien, vous pouvez utiliser nvm ( Node Version Manager ) qui va vous permettre de gérer différentes versions de Node sur une même machine. 
+# Heroku
 
-Avec nvm vous pouvez choisir quelle version utiliser par exemple, dans le dossier du projet, taper pour passer à la version 12.13 de node : nvm use 12.13
+URL Heroku : https://projetodmiashs.herokuapp.com/
 
-Eventuellement, nvm va vous demander d'installer la version 12.13 : nvm install 12.13
+# Nos routes
 
-## initialisation du projet
 
-Un projet node vient avec un fichier package.json descripteur du projet. C'est lui qui va lister les dépendances du projet et éventuellement des variables d'environnement et d'autres éléments de configuration du projet.
+précisez les routes que vous avez développé, comment elles marchent, à quoi elle servent
 
-Pour initialiser le projet et créer le package.json, taper la commande dans le dossier du projet : npm init
 
-Puis valider les options appropriées à votre projet.
-
-## Express.js
-
-Express est une surcouche à node qui facilite la syntaxe de la gestion des requêtes http. 
-
-Pour installer express et ajouter dans package.json la dépendance à express : npm install express
-
-## index.js
-
-On peut déjà écrire notre premier serveur node express. Si vous n'avez rien changé dans les propositions du package.json, votre fichier de démarrage serveur est index.js
-
-Avec notre premier code index.js, on a juste créé un serveur http qui écoute sur le port 3000 et une ressource racine ( / ) qui reçoit des requêtes http GET et renvoie "hello world!". Pour tester, il suffit de démarrer votre serveur avec la commande : node index.js
-
-Puis dans votre navigateur : localhost:3000
-
-vous devriez voir afficher "hello world !"
-
-## les difficultés rencontrées
-
-Au début du projet on avait trouvé une API sur les adresses. Cette API permettait d'avoir des informations à partir d'une adresse (cp, long, lati, ...), le soucis ait que le contenu de cette API était trop complexe et on n'arrivait pas à l'exporter en csv.
 
