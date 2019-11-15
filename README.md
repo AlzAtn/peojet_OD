@@ -14,7 +14,7 @@ Cela nous permet de récupérer le nom du laboratoire et son adresse, cette dern
 
 Lien API Laboratoire : https://data.iledefrance.fr/explore/dataset/laboratoires_de_biologie_medicale/api/
 
-Nous n'affichons pas l'ensemble des résultats que nous renvoient les API. En effet nous avons sélectionné les informations qui nous semblaient intéressantes proposées mais aussi les informations qui étaient complètes, certaines variables étaient peu renseignées.
+Nous n'affichons pas l'ensemble des résultats que nous renvoient les API. En effet nous avons sélectionné les informations qui nous semblaient intéressantes à proposées mais aussi les informations qui étaient complètes, certaines variables étaient peu renseignées.
 
 
 # Heroku
