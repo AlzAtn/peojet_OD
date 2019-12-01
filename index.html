@@ -26,11 +26,11 @@
 
 
 </head>
-<body>
+<body >
         <div class="container">
 
             <Center><h5>Trouvez vos médecins et vos laboratoires en Ile-de-France : </h5></Center>
-				<form name="forme" method="POST" action="/test-page" onsubmit="return validateForm()">
+				<form name="forme"  method="post" action="/form" onsubmit="return validateForm()">
 
                   <label for="fname"><h6>Ville</h6></label>
                   <input type="text" id="Vname" name="Vname" placeholder="Votre ville ...">
@@ -39,11 +39,11 @@
                   <input type="text" id="cp" name="cp"  placeholder="Code postal">
                   <span id="text"></span><br>
                   <span id="lname"></span>
-
+                 
 				  <br>
                   <br>
-                  <input type="submit" class="btn waves-effect waves-light" value="Submit" onclick="getCode()">
-				  <INPUT TYPE="reset" class="btn waves-effect waves-light" VALUE=" Annuler ">
+                  <input type="submit" class="btn waves-effect waves-light" value="submit" >
+				  <INPUT TYPE="reset" class="btn waves-effect waves-light" VALUE=" Annuler " onclick="window.location.reload()">
 			
 				  <br>
                   <br>
@@ -60,6 +60,7 @@
 
         <h3>Affichage résultats :</h3>
 
+       
 
     <div id="response">
          <div id=datacontent></div>
@@ -70,6 +71,12 @@
 
 
 <script>
+function labo(){
+    fetch('https://data.iledefrance.fr/api/records/1.0/search/?dataset=laboratoires_de_biologie_medicale&rows=823&facet=cp_ville')
+    .then(res => res.json())
+    .then(json => console.log(json));
+}
+
 
 
 function validateForm() {
@@ -82,31 +89,23 @@ function validateForm() {
   if (y == "") {
     alert("Veuillez renseigner votre Code Postale SVP");
     return false;
+  }else{
+    var target = document.getElementById('lname');
+    target.innerText = "Vous pouvez à présent télécharger les résultats en format csv"
+
   }
 }
 
-jsonbtn_lab = document.getElementById("jsonbtn_lab")
-csvbtn_lab = document.getElementById("csvbtn_lab")
-jsonbtn_med = document.getElementById("jsonbtn_med")
-csvbtn_med = document.getElementById("csvbtn_med")
 
 function getCode(){
 	console.log("nous sommes dans getcode");
-	//event.preventDefault();
-    var ville = document.getElementById('Vname').value;
-    console.log(ville)
-	fetch('/codepostale').then(response =>{
-		response.json().then(codepostal => {
-            var target = document.getElementById('lname');
-            var text = document.getElementById('text');
-           
-            text.innerText = "Le nombre de medcins dans la ville est de "+codepostal
-            target.innerText = "Vous pouvez à présent télécharger les résultats en format csv"
-        });
-        
-    });	
+             var target = document.getElementById('lname');
+             target.innerText = "Vous pouvez à présent télécharger les résultats en format csv"
 
 }
+
+
+
 
 function fetchehpadjson(route)
 {
@@ -144,30 +143,35 @@ function fetchehpadcsv(route)
             })
 }
 
+jsonbtn_lab = document.getElementById("jsonbtn_lab")
+csvbtn_lab = document.getElementById("csvbtn_lab")
+jsonbtn_med = document.getElementById("jsonbtn_med")
+csvbtn_med = document.getElementById("csvbtn_med")
+
 
 jsonbtn_lab.onclick = function()
 {
     console.log("clicked on json")
-    fetchehpadjson(`/names`)
+    fetchehpadjson(`/laboratoire`)
 }
 
 jsonbtn_med.onclick = function()
 {
     console.log("clicked on json")
-    fetchehpadjson(`/test`)
+    fetchehpadjson(`/medecin`)
 }
 
 csvbtn_lab.onclick = function()
 {
     console.log("clicked on csv")
-    fetchehpadcsv(`/names`)
+    fetchehpadcsv(`/laboratoire`)
 }
 
 
 csvbtn_med.onclick = function()
 {
     console.log("clicked on csv")
-    fetchehpadcsv(`/test`)
+    fetchehpadcsv(`/medecin`)
 }
 
 
