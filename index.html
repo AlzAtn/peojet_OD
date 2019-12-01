@@ -17,12 +17,28 @@
 
     <!-- Importing scripts so that it works well-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <style type="text/css">
+     .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 2s linear infinite;
+        }
 
+        @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+        }
+
+  
+    </style>
 
     <meta charset="utf-8">
     <title>Medic & Lab Ile-de-France</title>
     <meta descr="">
-
+  
 
 
 </head>
@@ -30,20 +46,19 @@
         <div class="container">
 
             <Center><h5>Trouvez vos médecins et vos laboratoires en Ile-de-France : </h5></Center>
-				<form name="forme"  method="post" action="/form" onsubmit="return validateForm()">
+				<form name="forme"  method="get" action="/form" onsubmit="return validateForm()">
 
                   <label for="fname"><h6>Ville</h6></label>
                   <input type="text" id="Vname" name="Vname" placeholder="Votre ville ...">
 
                   <label for="lname"><h6>Code Postal :</h6> </label>
                   <input type="text" id="cp" name="cp"  placeholder="Code postal">
-                  <span id="text"></span><br>
-                  <span id="lname"></span>
+                  <div id="load"></div>
                  
 				  <br>
                   <br>
                   <input type="submit" class="btn waves-effect waves-light" value="submit" >
-				  <INPUT TYPE="reset" class="btn waves-effect waves-light" VALUE=" Annuler " onclick="window.location.reload()">
+				  <INPUT TYPE="reset" class="btn waves-effect waves-light" VALUE=" Annuler " id="reset">
 			
 				  <br>
                   <br>
@@ -71,13 +86,6 @@
 
 
 <script>
-function labo(){
-    fetch('https://data.iledefrance.fr/api/records/1.0/search/?dataset=laboratoires_de_biologie_medicale&rows=823&facet=cp_ville')
-    .then(res => res.json())
-    .then(json => console.log(json));
-}
-
-
 
 function validateForm() {
   var x = document.forms["forme"]["Vname"].value;
@@ -90,8 +98,9 @@ function validateForm() {
     alert("Veuillez renseigner votre Code Postale SVP");
     return false;
   }else{
-    var target = document.getElementById('lname');
-    target.innerText = "Vous pouvez à présent télécharger les résultats en format csv"
+    var target = document.getElementById('load');
+    target.className = "loader"
+    
 
   }
 }

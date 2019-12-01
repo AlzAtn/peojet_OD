@@ -24,8 +24,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/index', function(req,res) {
-    var ville = ""
-    var cp = ""
+   
     fs.readFile('index.html', function(err, html) {
     if(err){throw err;}
     res.writeHead(200, {'Content-Type': 'text/html'})
@@ -36,12 +35,12 @@ app.get('/index', function(req,res) {
 })
 
 
-// Ici on recupere les données du formulaire -------------------------------
-app.post('/form', function(req, res) {
+// Ici on recupere les données du formulaire qui seront enreigstrées dans des variables globales ---------
+app.get('/form', function(req, res) {
     
     console.log("on est form")
-     ville = req.body.Vname
-     cp = req.body.cp
+     ville = req.query.Vname
+     cp = req.query.cp
      
      res.redirect('/')
     
@@ -55,6 +54,7 @@ app.get('/laboratoire' ,function(req,res){
     console.log("on est au labo")
     console.log(ville)
     console.log(cp)
+   
 
     const center_med ={
         Adresse_lab:String,
@@ -88,6 +88,8 @@ app.get('/laboratoire' ,function(req,res){
                 res.end()
                
             })
+         
+
         }else {
             console.log("tous les laboratoire")
             var url ='https://data.iledefrance.fr/api/records/1.0/search/?dataset=laboratoires_de_biologie_medicale&rows=823'
@@ -156,6 +158,8 @@ app.get('/medecin' ,function(req,res){
 
        
       })
+           
+           
     }else{
         console.log("tous les medecins")
         var url ='https://data.iledefrance.fr/api/records/1.0/search/?dataset=annuaire-et-localisation-des-professionnels-de-sante&rows=1000'
