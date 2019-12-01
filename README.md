@@ -14,6 +14,8 @@ Cela nous permet de récupérer le nom du laboratoire et son adresse, cette dern
 
 Lien API Laboratoire : https://data.iledefrance.fr/explore/dataset/laboratoires_de_biologie_medicale/api/
 
+Nous n'affichons pas l'ensemble des résultats que nous renvoient les API. En effet nous avons sélectionné les informations qui nous semblaient intéressantes à proposées mais aussi les informations qui étaient complètes, certaines variables étaient peu renseignées.
+
 
 # Heroku
 
@@ -22,7 +24,14 @@ URL Heroku : https://projetodmiashs.herokuapp.com/
 # Nos routes
 
 
-précisez les routes que vous avez développé, comment elles marchent, à quoi elle servent
+route : '/names' utiliser pour recuperer les adresses et les noms des laboratoires
+--- exemple : https://projetodmiashs.herokuapp.com/names
+
+route : '/test' utiliser pour recuperer les noms, les spécialités de medcins ainsi que les numeros de téléphones
+--- exemple : https://projetodmiashs.herokuapp.com/test
+
+route : '/codepostale' recupère le nombre de medcins dans la ville selectionnée
+--- exemple : https://projetodmiashs.herokuapp.com/codepostale
 
 
 
